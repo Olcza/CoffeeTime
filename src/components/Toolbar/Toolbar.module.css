@@ -1,0 +1,10 @@
+.toolbar {
+    box-sizing: border-box;
+    background-color: #A1A1A1;
+    height: 60px;
+    padding: 5px 10px;
+}
+
+.toolbar nav {
+    display: inline;
+}

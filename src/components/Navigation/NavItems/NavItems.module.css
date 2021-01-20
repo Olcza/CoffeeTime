@@ -1,0 +1,7 @@
+.navItems {
+    margin: 0 10px;
+    list-style: none;
+    float: right;
+    color: #262626;
+    padding-inline-start: 10px;
+}
