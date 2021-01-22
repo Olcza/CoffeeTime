@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.productList {
+    padding: 20px 0;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 -20px;
+    justify-content: center;
+    width: 1000px;
+}

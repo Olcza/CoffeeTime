@@ -1,0 +1,27 @@
+.card {
+    width: 270px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #ADADAD;
+    overflow: hidden;
+    margin: 20px 20px;
+    background-color: #FFFFFF;
+}
+
+.card img {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px; 
+}
+
+.info {
+    padding-bottom: 5px;
+}
+
+.content {
+    padding: 10px;
+    border-top: 1px solid #E9E9E9;
+}

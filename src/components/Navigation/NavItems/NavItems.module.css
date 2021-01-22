@@ -5,3 +5,9 @@
     color: #262626;
     padding-inline-start: 10px;
 }
+
+@media (min-width: 600px) {
+    .navItems {
+        margin: 0 20px;
+    }
+}
