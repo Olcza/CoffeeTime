@@ -1,6 +1,6 @@
 .miniCart {
     background-color: #A1A1A1;
-    padding: 15px;
+    padding: 15px 15px 0 15px;
     position: absolute;
     right: 0;
     top: 55px;
@@ -19,6 +19,11 @@
 .price {
     font-weight: bold;
     float: right;
+}
+
+.button {
+    width: 100%;
+    text-align: center;
 }
 
 @media (min-width: 600px) {

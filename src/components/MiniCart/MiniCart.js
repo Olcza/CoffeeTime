@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import MiniCartItem from './MiniCartItem/MiniCartItem';
+import Button from '../UI/Button/Button';
 import styles from './MiniCart.module.css';
 
-const MiniCart = () => {
+const MiniCart = ({history}) => {
     const [productsInCart, setProductsInCart] = useState([
         {
             name: 'Mixed Espresso',
@@ -21,6 +23,10 @@ const MiniCart = () => {
         }
     ]);
 
+    const proceedMiniCartHandler = () => {
+        history.push('/cart');
+    }
+
     const products = productsInCart.map(p => {
         return (
             <MiniCartItem name={p.name} amount={p.amount} price={p.price} key={p.name}/>
@@ -34,9 +40,11 @@ const MiniCart = () => {
             </ul>
             <span className={styles.total}> Total: </span>
             <span className={styles.price}> 100.00zł</span>
-            <button>Proceed</button>
+            <div className={styles.button}>
+                <Button clicked={proceedMiniCartHandler} color='grey'>PROCEED</Button>
+            </div>
         </div>
     )
 }
 
-export default MiniCart;
+export default withRouter(MiniCart);

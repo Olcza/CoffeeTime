@@ -4,10 +4,15 @@
 }
 
 .productList {
-    padding: 20px 0;
+    padding-top: 20px;
     display: flex;
     flex-flow: row wrap;
     margin: 0 -20px;
     justify-content: center;
     width: 1000px;
+}
+
+.button {
+    float: right;
+    margin-right: 30px;
 }

@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import { withRouter } from 'react-router-dom';
 import Card from '../UI/Card/Card';
 import ProductDetails from './ProductDetails/ProductDetails';
+import Button from '../UI/Button/Button';
 import styles from './ProductList.module.css';
 
 const products = [
@@ -94,7 +95,9 @@ const ProductList = ({history}) => {
             <div className={styles.container}>
                 <div className={styles.productList}> {allProducts} </div>
             </div>
-            <button onClick={goToCartHandler}>Go to cart</button>
+            <div className={styles.button}>
+                <Button color='brown' clicked={goToCartHandler}>GO TO CART</Button>
+            </div>
         </Fragment>
     );
 }
