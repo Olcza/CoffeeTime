@@ -1,4 +1,5 @@
 import React, {Fragment, useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import Card from '../UI/Card/Card';
 import ProductDetails from './ProductDetails/ProductDetails';
 import styles from './ProductList.module.css';
@@ -54,15 +55,19 @@ const products = [
     }
 ];
 
-const ProductList = () => {
+const ProductList = ({history}) => {
     const [detailedProduct, setDetailedProduct] = useState(null);
 
     const productClickHandler = (e) => {
-        setDetailedProduct(e.target.closest("div").dataset.id)
+        setDetailedProduct(e.target.closest("div").dataset.id);
     }
 
     const closeDetailsHandler = () => {
         setDetailedProduct(null);
+    }
+
+    const goToCartHandler = () => {
+        history.push('/cart');
     }
 
     const allProducts = products.map(product => {
@@ -89,8 +94,9 @@ const ProductList = () => {
             <div className={styles.container}>
                 <div className={styles.productList}> {allProducts} </div>
             </div>
+            <button onClick={goToCartHandler}>Go to cart</button>
         </Fragment>
     );
 }
 
-export default ProductList;
+export default withRouter(ProductList);

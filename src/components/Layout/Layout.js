@@ -4,13 +4,12 @@ import Intro from '../Intro/Intro';
 import styles from './Layout.module.css';
 import ProductList from '../ProductList/ProductList';
 
-const Layout = () => {
+const Layout = ({children}) => {
     return(
         <div className={styles.layout}>
             <Toolbar/>
             <main>
-                <Intro/>
-                <ProductList/>
+                {children}
             </main>
         </div>
     );

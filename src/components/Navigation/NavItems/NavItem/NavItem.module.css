@@ -3,6 +3,7 @@
     line-height: 50px;
     cursor: pointer;
     margin: 0 2px;
+    color: #000;
 }
 
 @media (min-width: 600px) {

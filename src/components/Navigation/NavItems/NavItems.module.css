@@ -6,6 +6,14 @@
     padding-inline-start: 10px;
 }
 
+.navItems a {
+    text-decoration: none;
+}
+
+.active li{
+    color: #5A5A5A;
+}
+
 @media (min-width: 600px) {
     .navItems {
         margin: 0 20px;
