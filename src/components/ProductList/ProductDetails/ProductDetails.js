@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '../../UI/Modal/Modal';
+import Button from '../../UI/Button/Button';
 import styles from './ProductDetails.module.css';
 
 const ProductDetails = ({productData, backdropClick}) => {
@@ -9,12 +10,16 @@ const ProductDetails = ({productData, backdropClick}) => {
     useEffect(() => {
         const newPrice = (productAmount/1000 * productData[0].price).toFixed(2);
         setProductPrice(newPrice);
-    }, [productAmount, productData])
+    }, [productAmount, productData]);
+
+    const addToCartHandler = () => {
+
+    };
 
     return (
         <Modal show='true' backdropClicked={backdropClick}>
             <div className={styles.productDetails}>
-                <img src='images/1a.png' alt=''></img>
+                <img src={`images/${productData[0].id}det.jpg`} alt=''></img>
                 <div className={styles.name}>{productData[0].name}</div>
                 <div>
                     <span className={styles.label}>type: </span>
@@ -43,7 +48,9 @@ const ProductDetails = ({productData, backdropClick}) => {
                     </div>
                     <span>Price: {productPrice}zł</span>
                 </div>
-                <button>Add to cart</button>
+                <div className={styles.button}>
+                    <Button clicked={addToCartHandler} color='brown'>ADD TO CART</Button>
+                </div>
             </div>
         </Modal>
     );

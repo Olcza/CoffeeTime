@@ -1,63 +1,23 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { withRouter } from 'react-router-dom';
+import axios from '../../axios';
 import Card from '../UI/Card/Card';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Button from '../UI/Button/Button';
 import styles from './ProductList.module.css';
 
-const products = [
-    {
-        id: 'inma',
-        name: 'Indonesia Mandheling',
-		country: 'Indonesia',
-		roastLevel: 'dark' ,
-        type: 'arabica',
-        price: 99
-    },
-    {
-        id: 'yebo',
-        name: 'Yellow Bourbon',
-		country: 'Brasil',
-		roastLevel: 'light',
-        type: 'arabica',
-        price: 89
-    },
-    {
-        id: 'coma',
-        name: 'Colombia Madellin',
-		country: 'Colombia',
-		roastLevel: 'medium',
-        type: 'robusta',
-        price: 129
-    },
-	{
-        id: 'etyi',
-        name: 'Ethiopia Yirgacheffe',
-		country: 'Ethiopia',
-		roastLevel: 'medium',
-        type: 'arabica',
-        price: 129
-    },
-    {
-        id: 'ugmw',
-        name: 'Uganda Mwezi',
-		country: 'Uganda',
-		roastLevel: 'medium',
-        type: 'robusta',
-        price: 119
-    },
-    {
-        id: 'mies',
-        name: 'Mixed Espresso',
-		country: 'Kenya, India, Brasil',
-		roastLevel: 'dark',
-        type: 'arabica',
-        price: 99
-    }
-];
+
 
 const ProductList = ({history}) => {
+    const [products, setProducts] = useState([]);
     const [detailedProduct, setDetailedProduct] = useState(null);
+
+    useEffect(() => {
+        axios.get('/products.json')
+        .then(resp => {
+            setProducts(resp.data);
+        })
+    },[]);
 
     const productClickHandler = (e) => {
         setDetailedProduct(e.target.closest("div").dataset.id);

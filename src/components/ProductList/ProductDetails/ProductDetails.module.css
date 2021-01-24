@@ -5,13 +5,9 @@
 
 .productDetails img {
     float: left;
-    height: 310px;
+    height: 320px;
     margin-right: 20px;
 }
-
-.productDetails button {
-    float: right;
-} 
 
 .name {
     font-weight: bold;
@@ -24,7 +20,7 @@
 }
 
 .pricingArea {
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 .select {
@@ -63,4 +59,8 @@
 
   .select:hover::after {
     color: #fff;
+  }
+
+  .button {
+      float: right;
   }
