@@ -1,49 +1,95 @@
-import React from 'react';
+import React, {Fragment, useState} from 'react';
 import Card from '../UI/Card/Card';
+import ProductDetails from './ProductDetails/ProductDetails';
 import styles from './ProductList.module.css';
 
 const products = [
     {
+        id: 'inma',
         name: 'Indonesia Mandheling',
+		country: 'Indonesia',
+		roastLevel: 'dark' ,
         type: 'arabica',
         price: 99
     },
     {
+        id: 'yebo',
         name: 'Yellow Bourbon',
+		country: 'Brasil',
+		roastLevel: 'light',
         type: 'arabica',
         price: 89
     },
     {
+        id: 'coma',
         name: 'Colombia Madellin',
+		country: 'Colombia',
+		roastLevel: 'medium',
         type: 'robusta',
         price: 129
     },
-    {
-        name: 'Uganda Mwezi',
+	{
+        id: 'etyi',
+        name: 'Ethiopia Yirgacheffe',
+		country: 'Ethiopia',
+		roastLevel: 'medium',
         type: 'arabica',
+        price: 129
+    },
+    {
+        id: 'ugmw',
+        name: 'Uganda Mwezi',
+		country: 'Uganda',
+		roastLevel: 'medium',
+        type: 'robusta',
         price: 119
     },
     {
-        name: 'Ethiopia Yirgacheffe',
-        type: 'robusta',
-        price: 129
-    },
-    {
+        id: 'mies',
         name: 'Mixed Espresso',
+		country: 'Kenya, India, Brasil',
+		roastLevel: 'dark',
         type: 'arabica',
         price: 99
     }
 ];
 
 const ProductList = () => {
+    const [detailedProduct, setDetailedProduct] = useState(null);
+
+    const productClickHandler = (e) => {
+        setDetailedProduct(e.target.closest("div").dataset.id)
+    }
+
+    const closeDetailsHandler = () => {
+        setDetailedProduct(null);
+    }
+
     const allProducts = products.map(product => {
-        return <Card title={product.name} info={'type: ' + product.type} content={product.price + ' zł/kg'}/>
+        return (
+            <Card 
+                key={product.id} 
+                title={product.name} 
+                content={`type: ${product.type}`} 
+                info={`${product.price} zł/kg`}
+                id = {product.id}
+                clicked={(e) => productClickHandler(e)}/>
+        );
     });
 
+    const filteredDetailedProduct = products.filter(p => p.id===detailedProduct)
+
+    const details = detailedProduct
+                    ? <ProductDetails productData={filteredDetailedProduct} backdropClick={closeDetailsHandler}/> 
+                    : null;
+
     return (
-        <div className={styles.container}>
-            <div className={styles.productList}> {allProducts} </div>
-        </div>
+        <Fragment>
+            {details}
+            <div className={styles.container}>
+                <div className={styles.productList}> {allProducts} </div>
+            </div>
+        </Fragment>
     );
 }
 

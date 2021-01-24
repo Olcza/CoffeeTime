@@ -1,10 +1,18 @@
 .modal {
-    width: 80%;
+    position: fixed;
+    left: 10%;
+    width: 80vw;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    z-index: 200;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    overflow: hidden;
 }
 
 @media (min-width: 600px) {
     .modal {
-        width: 500px;
+        width: 580px;
+        left: calc(50% - 290px);
+        top: 20%;
     }
 }

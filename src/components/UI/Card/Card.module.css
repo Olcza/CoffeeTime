@@ -5,6 +5,11 @@
     overflow: hidden;
     margin: 20px 20px;
     background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.card span {
+    display: block;
 }
 
 .card img {
@@ -17,11 +22,11 @@
     padding-top: 10px; 
 }
 
-.info {
+.content {
     padding-bottom: 5px;
 }
 
-.content {
+.info {
     padding: 10px;
     border-top: 1px solid #E9E9E9;
 }

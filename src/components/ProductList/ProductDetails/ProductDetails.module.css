@@ -1,0 +1,66 @@
+.productDetails {
+    overflow: hidden;
+    text-align: left;
+}
+
+.productDetails img {
+    float: left;
+    height: 310px;
+    margin-right: 20px;
+}
+
+.productDetails button {
+    float: right;
+} 
+
+.name {
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.label {
+    margin-top: 5px;
+    color: #5A5A5A;
+}
+
+.pricingArea {
+    margin: 20px 0;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    width: 200px;
+    height: 30px;
+    background: #EDE3C7;
+    overflow: hidden;
+    border-radius: .25em;
+    margin-bottom: 10px;
+}
+
+
+.pricingArea select{
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: none;
+    background: #EDE3C7;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    cursor: pointer;
+}
+
+.select::after {
+    content: '\02C5';
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+  }
+
+  .select:hover::after {
+    color: #fff;
+  }
