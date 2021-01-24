@@ -1,0 +1,28 @@
+.miniCart {
+    background-color: #A1A1A1;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    top: 55px;
+}
+
+.miniCart ul {
+    list-style: none;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+
+.total {
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    float: right;
+}
+
+@media (min-width: 600px) {
+    .miniCart {
+        width: 300px;
+    }
+}

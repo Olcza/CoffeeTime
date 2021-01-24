@@ -1,0 +1,9 @@
+.miniCartItem {
+    border-bottom: 1px solid #6D6D6D;
+    margin-bottom: 5px;
+}
+
+.price {
+    float: right;
+    font-weight: bold;
+}
