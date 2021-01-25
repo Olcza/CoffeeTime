@@ -4,19 +4,23 @@ import axios from '../../axios';
 import Card from '../UI/Card/Card';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Button from '../UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import styles from './ProductList.module.css';
-
-
 
 const ProductList = ({history}) => {
     const [products, setProducts] = useState([]);
     const [detailedProduct, setDetailedProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('/products.json')
+        axios.get('/products.jsn')
         .then(resp => {
             setProducts(resp.data);
-        })
+            setLoading(false);
+        }).catch(e => {
+            console.log(e);
+            setLoading(false);
+        });
     },[]);
 
     const productClickHandler = (e) => {
@@ -50,6 +54,8 @@ const ProductList = ({history}) => {
                     : null;
 
     return (
+        loading ?
+        <Spinner/> :
         <Fragment>
             {details}
             <div className={styles.container}>
