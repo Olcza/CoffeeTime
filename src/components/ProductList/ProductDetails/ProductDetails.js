@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import {connect} from 'react-redux';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import styles from './ProductDetails.module.css';
 
-const ProductDetails = ({productData, backdropClick}) => {
+const ProductDetails = ({productData, backdropClick, increment}) => {
     const [productPrice, setProductPrice] = useState(0);
     const [productAmount, setProductAmount] = useState(100);
 
@@ -13,7 +14,6 @@ const ProductDetails = ({productData, backdropClick}) => {
     }, [productAmount, productData]);
 
     const addToCartHandler = () => {
-
     };
 
     return (

@@ -13,7 +13,7 @@ const ProductList = ({history}) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('/products.jsn')
+        axios.get('/products.json')
         .then(resp => {
             setProducts(resp.data);
             setLoading(false);
