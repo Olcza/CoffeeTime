@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {connect} from 'react-redux';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import styles from './ProductDetails.module.css';
 
-const ProductDetails = ({productData, backdropClick, increment}) => {
+const ProductDetails = ({productData, backdropClick, add}) => {
     const [productPrice, setProductPrice] = useState(0);
     const [productAmount, setProductAmount] = useState(100);
+
+    const amount = useRef();
 
     useEffect(() => {
         const newPrice = (productAmount/1000 * productData[0].price).toFixed(2);
@@ -14,6 +16,13 @@ const ProductDetails = ({productData, backdropClick, increment}) => {
     }, [productAmount, productData]);
 
     const addToCartHandler = () => {
+        console.log(amount);
+        const cartItem = {
+            name: productData[0].name,
+            amount: productAmount,
+            price: productPrice
+        }
+        add(cartItem);
     };
 
     return (
@@ -40,7 +49,7 @@ const ProductDetails = ({productData, backdropClick, increment}) => {
                 <div className={styles.pricingArea}>
                     <span className={styles.label}>How much of coffee do you want to buy?</span>
                     <div className={styles.select}>
-                        <select value={productAmount} onChange={e => setProductAmount(e.target.value)}>
+                        <select value={productAmount} onChange={e => setProductAmount(e.target.value)} ref={amount}>
                             <option value="100">100g</option>
                             <option value="500">500g</option>
                             <option value="1000">1000g</option>
@@ -56,4 +65,10 @@ const ProductDetails = ({productData, backdropClick, increment}) => {
     );
 }
 
-export default ProductDetails;
+const mapDispatchToProps = dispatch => {
+    return {
+        add: (cartItem) => dispatch({type: 'ADD', val: cartItem})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ProductDetails);

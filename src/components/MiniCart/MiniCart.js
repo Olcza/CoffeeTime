@@ -1,33 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MiniCartItem from './MiniCartItem/MiniCartItem';
 import Button from '../UI/Button/Button';
 import styles from './MiniCart.module.css';
 
-const MiniCart = ({history}) => {
-    const [productsInCart, setProductsInCart] = useState([
-        {
-            name: 'Mixed Espresso',
-            amount: 500,
-            price: 49.50
-        },
-        {
-            name: 'Uganda Mwezi',
-            amount: 100,
-            price: 49.50
-        },
-        {
-            name: 'Ethiopia Yirgacheffe',
-            amount: 1000,
-            price: 49.50
-        }
-    ]);
-
+const MiniCart = ({history, cartItems, total}) => {
     const proceedMiniCartHandler = () => {
         history.push('/cart');
     }
 
-    const products = productsInCart.map(p => {
+    const products = cartItems.map(p => {
         return (
             <MiniCartItem name={p.name} amount={p.amount} price={p.price} key={p.name}/>
         );
@@ -39,7 +22,7 @@ const MiniCart = ({history}) => {
                 {products}
             </ul>
             <span className={styles.total}> Total: </span>
-            <span className={styles.price}> 100.00zł</span>
+            <span className={styles.price}> {total} </span>
             <div className={styles.button}>
                 <Button clicked={proceedMiniCartHandler} color='grey'>PROCEED</Button>
             </div>
@@ -47,4 +30,11 @@ const MiniCart = ({history}) => {
     )
 }
 
-export default withRouter(MiniCart);
+const mapStateToProps = state => {
+    return {
+        cartItems: state.cartItems,
+        total: state.total
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(MiniCart));

@@ -1,11 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import NavItem from './NavItem/NavItem';
 import styles from './NavItems.module.css';
 
-const NavItems = ({cartClicked}) => (
+const NavItems = ({cartClicked, cartItems}) => (
     <ul className={styles.navItems}>
-        <NavItem clicked={cartClicked}>Cart(0)</NavItem>
+        <NavItem clicked={cartClicked}>Cart({cartItems.length})</NavItem>
         <NavLink to="/orders" activeClassName={styles.active}>
             <NavItem>My orders</NavItem>
         </NavLink>
@@ -15,4 +16,10 @@ const NavItems = ({cartClicked}) => (
     </ul>
 );
 
-export default NavItems;
+const mapStateToProps = state => {
+    return {
+        cartItems: state.cartItems
+    }
+}
+
+export default connect(mapStateToProps)(NavItems);
