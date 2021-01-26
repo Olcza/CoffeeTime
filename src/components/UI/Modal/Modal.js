@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import Backdrop from '../Backdrop/Backdrop';
 import styles from './Modal.module.css';
 

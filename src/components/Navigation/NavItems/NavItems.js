@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import NavItem from './NavItem/NavItem';
 import styles from './NavItems.module.css';
 

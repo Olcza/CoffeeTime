@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MiniCartItem from './MiniCartItem/MiniCartItem';
 import Button from '../UI/Button/Button';
@@ -21,8 +21,8 @@ const MiniCart = ({history, cartItems, total}) => {
             <ul>
                 {products}
             </ul>
-            <span className={styles.total}> Total: </span>
-            <span className={styles.price}> {total} </span>
+            <span className={styles.total}>Total:</span>
+            <span className={styles.price}>{total}</span>
             <div className={styles.button}>
                 <Button clicked={proceedMiniCartHandler} color='grey'>PROCEED</Button>
             </div>

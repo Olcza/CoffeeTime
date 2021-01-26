@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import styles from './ProductDetails.module.css';
@@ -8,15 +8,12 @@ const ProductDetails = ({productData, backdropClick, add}) => {
     const [productPrice, setProductPrice] = useState(0);
     const [productAmount, setProductAmount] = useState(100);
 
-    const amount = useRef();
-
     useEffect(() => {
         const newPrice = (productAmount/1000 * productData[0].price).toFixed(2);
         setProductPrice(newPrice);
     }, [productAmount, productData]);
 
     const addToCartHandler = () => {
-        console.log(amount);
         const cartItem = {
             name: productData[0].name,
             amount: productAmount,
@@ -49,7 +46,7 @@ const ProductDetails = ({productData, backdropClick, add}) => {
                 <div className={styles.pricingArea}>
                     <span className={styles.label}>How much of coffee do you want to buy?</span>
                     <div className={styles.select}>
-                        <select value={productAmount} onChange={e => setProductAmount(e.target.value)} ref={amount}>
+                        <select value={productAmount} onChange={e => setProductAmount(e.target.value)}>
                             <option value="100">100g</option>
                             <option value="500">500g</option>
                             <option value="1000">1000g</option>

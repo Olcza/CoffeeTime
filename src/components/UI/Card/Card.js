@@ -9,7 +9,7 @@ const Card = ({title, content, info, id, clicked}) => {
         <span className={styles.content}>{content}</span>
         <span className={styles.info}>{info}</span>
     </div>
-    )
+    );
 };
 
 export default Card;

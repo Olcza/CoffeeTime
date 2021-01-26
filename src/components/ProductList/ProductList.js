@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from '../../axios';
 import Card from '../UI/Card/Card';
@@ -23,7 +23,7 @@ const ProductList = ({history}) => {
         });
     },[]);
 
-    const productClickHandler = (e) => {
+    const productClickHandler = e => {
         setDetailedProduct(e.target.closest("div").dataset.id);
     }
 
@@ -43,7 +43,7 @@ const ProductList = ({history}) => {
                 content={`type: ${product.type}`} 
                 info={`${product.price} zł/kg`}
                 id = {product.id}
-                clicked={(e) => productClickHandler(e)}/>
+                clicked={e => productClickHandler(e)}/>
         );
     });
 
@@ -59,7 +59,7 @@ const ProductList = ({history}) => {
         <Fragment>
             {details}
             <div className={styles.container}>
-                <div className={styles.productList}> {allProducts} </div>
+                <div className={styles.productList}>{allProducts}</div>
             </div>
             <div className={styles.button}>
                 <Button color='brown' clicked={goToCartHandler}>GO TO CART</Button>
