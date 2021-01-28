@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
@@ -17,7 +17,8 @@ const ProductDetails = ({productData, backdropClick, add}) => {
         const cartItem = {
             name: productData[0].name,
             amount: productAmount,
-            price: productPrice
+            price: productPrice,
+            id: productData[0].id
         }
         add(cartItem);
     };

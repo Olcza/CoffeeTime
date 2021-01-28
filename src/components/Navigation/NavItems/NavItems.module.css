@@ -1,9 +1,10 @@
 .navItems {
-    margin: 0 10px;
+    margin-right: 10px;
     list-style: none;
     float: right;
     color: #262626;
-    padding-inline-start: 10px;
+    padding-inline-start: 0;
+    margin-block-start: 0;
 }
 
 .navItems a {

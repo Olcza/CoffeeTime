@@ -1,0 +1,41 @@
+.cartItem {
+    margin: 25px 0;
+}
+
+.cartItem img {
+    height: 80px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.cartItem i {
+    margin-left: 10px;
+    color: #696969;
+    cursor: pointer;
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+@media (min-width: 600px) {
+    .cartItem {
+        height: 80px;
+    }    
+
+    .cartItem img {
+        width: 80px;
+        float: left;
+    }
+
+    .details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        width: 470px;
+        padding: 0 15px;
+    }
+}

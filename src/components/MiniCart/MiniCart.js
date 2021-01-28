@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MiniCartItem from './MiniCartItem/MiniCartItem';
@@ -10,22 +10,33 @@ const MiniCart = ({history, cartItems, total}) => {
         history.push('/cart');
     }
 
-    const products = cartItems.map(p => {
+    const products = cartItems.map((product, i) => {
         return (
-            <MiniCartItem name={p.name} amount={p.amount} price={p.price} key={p.name}/>
+            <MiniCartItem 
+                name={product.name} 
+                amount={product.amount} 
+                price={product.price} 
+                key={product.name+i}
+            />
         );
     })
 
     return (
         <div className={styles.miniCart}>
-            <ul>
-                {products}
-            </ul>
-            <span className={styles.total}>Total:</span>
-            <span className={styles.price}>{total}</span>
-            <div className={styles.button}>
-                <Button clicked={proceedMiniCartHandler} color='grey'>PROCEED</Button>
-            </div>
+            {cartItems.length
+            ?
+            <Fragment>
+                <ul>
+                    {products}
+                </ul>
+                <span className={styles.total}>Total:</span>
+                <span className={styles.price}>{total}zł</span>
+                <div className={styles.button}>
+                    <Button clicked={proceedMiniCartHandler} color='grey'>PROCEED</Button>
+                </div>
+            </Fragment>
+            :
+            <p className={styles.empty}>Your cart is empty</p>}
         </div>
     )
 }

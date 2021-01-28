@@ -1,0 +1,52 @@
+.cart {
+    text-align: center;
+}
+
+.cart ul {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.cart button {
+    display: inline;
+    align-self: baseline;
+}
+
+h1 {
+    margin-block-start: 0;
+    padding-top: 20px;
+}
+
+.total {
+    font-weight: bold;
+}
+
+.totalPrice {
+    font-size: 1.2rem;
+}
+
+.empty {
+    padding-top: 30vh;
+    font-size: 1.5rem;
+}
+
+@media (min-width: 600px) {
+    .cart {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .total {
+        width: 570px;
+    }
+
+    .totalPrice {
+        float: right;
+    }
+
+    h1 {
+        margin-block-end: 0;
+    }
+}
