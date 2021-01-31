@@ -52,7 +52,7 @@ const ProductDetails = ({product, onAdd, onSetDetailedProduct}) => {
                     <span>Price: {productPrice}zł</span>
                 </div>
                 <div className={styles.button}>
-                    <Button clicked={addToCartHandler} color='brown'>ADD TO CART</Button>
+                    <Button clicked={addToCartHandler} color='brown' disabled={false}>ADD TO CART</Button>
                 </div>
             </div>
         </Modal>

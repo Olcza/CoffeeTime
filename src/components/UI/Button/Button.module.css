@@ -9,6 +9,11 @@
     outline: none;
 }
 
+.button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
 .brown {
     color: #5D4037;
 }

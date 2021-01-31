@@ -20,3 +20,9 @@ export const toggleMiniCart = () => {
         type: actionTypes.TOGGLE_MINI_CART
     };
 };
+
+export const clearCart = () => {
+    return {
+        type: actionTypes.CLEAR_CART
+    };
+};

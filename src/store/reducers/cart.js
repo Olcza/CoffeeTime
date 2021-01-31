@@ -25,6 +25,11 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 miniCartOpen: !state.miniCartOpen
             } 
+        case actionTypes.CLEAR_CART:
+            return{
+                ...state,
+                cartItems: []
+            } 
         default: 
             return state
     }

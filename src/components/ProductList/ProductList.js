@@ -44,7 +44,7 @@ const ProductList = ({history, onFetchProducts, loading, products, onSetDetailed
                 <div className={styles.productList}>{allProducts}</div>
             </div>
             <div className={styles.button}>
-                <Button color='brown' clicked={goToCartHandler}>GO TO CART</Button>
+                <Button color='brown' clicked={goToCartHandler} disabled={false}>GO TO CART</Button>
             </div>
         </Fragment>
     );

@@ -34,7 +34,7 @@ const MiniCart = ({history, cartItems, total, onToggleMiniCart}) => {
                 <span className={styles.total}>Total:</span>
                 <span className={styles.price}>{total}zł</span>
                 <div className={styles.button}>
-                    <Button clicked={proceedMiniCartHandler} color='grey'>PROCEED</Button>
+                    <Button clicked={proceedMiniCartHandler} color='grey' disabled={false}>PROCEED</Button>
                 </div>
             </Fragment>
             :
