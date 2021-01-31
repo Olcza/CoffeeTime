@@ -38,8 +38,8 @@ const Cart = ({cartItems, total}) => {
 
 const mapStateToProps = state => {
     return {
-        cartItems: state.cartItems,
-        total: state.total
+        cartItems: state.cart.cartItems,
+        total: state.cart.total
     }
 }
 

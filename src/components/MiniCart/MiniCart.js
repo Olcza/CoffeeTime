@@ -4,10 +4,12 @@ import { withRouter } from 'react-router-dom';
 import MiniCartItem from './MiniCartItem/MiniCartItem';
 import Button from '../UI/Button/Button';
 import styles from './MiniCart.module.css';
+import * as actions from '../../store/actions/index';
 
-const MiniCart = ({history, cartItems, total}) => {
+const MiniCart = ({history, cartItems, total, onToggleMiniCart}) => {
     const proceedMiniCartHandler = () => {
         history.push('/cart');
+        onToggleMiniCart();
     }
 
     const products = cartItems.map((product, i) => {
@@ -43,9 +45,15 @@ const MiniCart = ({history, cartItems, total}) => {
 
 const mapStateToProps = state => {
     return {
-        cartItems: state.cartItems,
-        total: state.total
+        cartItems: state.cart.cartItems,
+        total: state.cart.total
     }
 }
 
-export default withRouter(connect(mapStateToProps)(MiniCart));
+const mapDispatchToProps = dispatch => {
+    return {
+        onToggleMiniCart: () => dispatch(actions.toggleMiniCart()),
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MiniCart));

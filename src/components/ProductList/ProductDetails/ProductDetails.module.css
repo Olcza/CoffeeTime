@@ -13,8 +13,7 @@
     margin: 20px 0;
 }
 
-.label {
-    margin-top: 5px;
+.specification span, .label {
     color: #5A5A5A;
 }
 

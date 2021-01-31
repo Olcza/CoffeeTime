@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './CartItem.module.css';
+import * as actions from '../../../store/actions/index';
 
-const CartItem = ({name, amount, price, id, index, remove}) => {
-    const removeItem = (price, index) => {
-        //console.log(price, index);
-        remove(price, index);
+const CartItem = ({name, amount, price, id, index, onRemove}) => {
+    const removeItem = (index, price) => {
+        onRemove(index, price);
     }
 
     return (
@@ -18,7 +18,7 @@ const CartItem = ({name, amount, price, id, index, remove}) => {
                 </div>
                 <div>
                     {price}zł 
-                    <i className="fas fa-trash-alt" onClick={() => removeItem(price, index)}></i> 
+                    <i className="fas fa-trash-alt" onClick={() => removeItem(index, price)}></i> 
                 </div>
             </div>
         </li>
@@ -27,7 +27,7 @@ const CartItem = ({name, amount, price, id, index, remove}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        remove: (price, index) => dispatch({type: 'REMOVE', price: price, index: index})
+        onRemove: (index, price) => dispatch(actions.remove(index, price))
     }
 }
 

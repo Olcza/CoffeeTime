@@ -1,34 +1,20 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from '../../axios';
+import { connect } from 'react-redux';
 import Card from '../UI/Card/Card';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Button from '../UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import styles from './ProductList.module.css';
+import * as actions from '../../store/actions/index';
 
-const ProductList = ({history}) => {
-    const [products, setProducts] = useState([]);
-    const [detailedProduct, setDetailedProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-
+const ProductList = ({history, onFetchProducts, loading, products, onSetDetailedProduct, detailedProduct}) => {
     useEffect(() => {
-        axios.get('/products.json')
-        .then(resp => {
-            setProducts(resp.data);
-            setLoading(false);
-        }).catch(e => {
-            console.log(e);
-            setLoading(false);
-        });
-    },[]);
+        onFetchProducts()
+    },[onFetchProducts]);
 
-    const productClickHandler = e => {
-        setDetailedProduct(e.target.closest("div").dataset.id);
-    }
-
-    const closeDetailsHandler = () => {
-        setDetailedProduct(null);
+    const productClickHandler = id => {
+        onSetDetailedProduct(id);
     }
 
     const goToCartHandler = () => {
@@ -43,21 +29,17 @@ const ProductList = ({history}) => {
                 content={`type: ${product.type}`} 
                 info={`${product.price} zł/kg`}
                 id = {product.id}
-                clicked={e => productClickHandler(e)}/>
+                clicked={() => productClickHandler(product.id)}/>
         );
     });
 
-    const filteredDetailedProduct = products.filter(p => p.id===detailedProduct)
-
-    const details = detailedProduct
-                    ? <ProductDetails productData={filteredDetailedProduct} backdropClick={closeDetailsHandler}/> 
-                    : null;
+    const detailed = detailedProduct? <ProductDetails/> : null;
 
     return (
         loading ?
         <Spinner/> :
         <Fragment>
-            {details}
+            {detailed}
             <div className={styles.container}>
                 <div className={styles.productList}>{allProducts}</div>
             </div>
@@ -68,4 +50,19 @@ const ProductList = ({history}) => {
     );
 }
 
-export default withRouter(ProductList);
+const mapStateToProps = state => {
+    return {
+        products: state.products.products,
+        loading: state.products.loading,
+        detailedProduct: state.products.detailedProduct
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchProducts: () => dispatch(actions.fetchProducts()),
+        onSetDetailedProduct: product => dispatch(actions.setDetailedProduct(product)),
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductList));
