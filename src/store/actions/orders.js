@@ -34,3 +34,38 @@ export const makeOrder = (orderData) => {
         });
     }
 }
+
+export const fetchOrdersStart = () => {
+    return {
+        type: actionTypes.FETCH_ORDERS_START
+    }
+} 
+
+export const fetchOrdersSuccess = (orders) => {
+    return {
+        type: actionTypes.FETCH_ORDERS_SUCCESS,
+        fetchedOrders: orders
+    }
+}
+
+export const fetchOrdersFail = () => {
+    return {
+        type: actionTypes.FETCH_ORDERS_FAIL
+    }
+}
+
+export const fetchOrders = () => {
+    return dispatch => {
+        dispatch(fetchOrdersStart());
+        axios.get('/orders.json')
+        .then(resp => {
+            const fetchedOrders = [];
+            for(let key in resp.data){
+                fetchedOrders.push({...resp.data[key]});
+            }
+            dispatch(fetchOrdersSuccess(fetchedOrders));
+        }).catch(() => {
+            dispatch(fetchOrdersFail());
+        });
+    }
+}

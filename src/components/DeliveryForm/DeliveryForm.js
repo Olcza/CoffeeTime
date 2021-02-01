@@ -50,7 +50,7 @@ const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearC
             valid: false,
             touched: false
         },
-        country: {
+        city: {
             elementConfig: {
                 type: 'text',
                 placeholder: 'City'
@@ -62,7 +62,7 @@ const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearC
             valid: false,
             touched: false
         },
-        email: {
+        phone: {
             elementConfig: {
                 type: 'tel',
                 placeholder: 'Phone number'

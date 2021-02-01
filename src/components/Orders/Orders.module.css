@@ -1,0 +1,16 @@
+.orders {
+    text-align: left;
+    padding: 0 15px;
+}
+
+.orders h1 {
+    text-align: center;
+}
+
+@media (min-width: 600px) {
+    .orders {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

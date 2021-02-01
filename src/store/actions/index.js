@@ -10,4 +10,5 @@ export {
 } from './products';
 export {
     makeOrder,
+    fetchOrders
 } from './orders';

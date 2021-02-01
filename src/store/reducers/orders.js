@@ -1,7 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    makeOrderLoading: false
+    makeOrderLoading: false,
+    orders: [],
+    fetchOrdersLoading: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -20,6 +22,22 @@ const reducer = (state=initialState, action) => {
             return{
                 ...state,
                 makeOrderLoading: false
+            }
+        case actionTypes.FETCH_ORDERS_START:
+            return{
+                ...state,
+                fetchOrdersLoading: true
+            }
+        case actionTypes.FETCH_ORDERS_SUCCESS:
+            return{
+                ...state,
+                orders: action.fetchedOrders,
+                fetchOrdersLoading: false
+            }
+        case actionTypes.FETCH_ORDERS_FAIL:
+            return{
+                ...state,
+                fetchOrdersLoading: false
             }
         default: 
             return state
