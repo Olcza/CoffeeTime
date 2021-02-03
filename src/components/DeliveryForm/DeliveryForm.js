@@ -147,7 +147,7 @@ const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearC
     });
 
     return (
-        <Modal>
+        <Modal backdropClicked={cancelHandler}>
             {loading
             ?
             <Spinner/>
