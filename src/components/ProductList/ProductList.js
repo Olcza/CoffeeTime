@@ -8,10 +8,14 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import styles from './ProductList.module.css';
 import * as actions from '../../store/actions/index';
 
-const ProductList = ({history, onFetchProducts, loading, products, onSetDetailedProduct, detailedProduct}) => {
+const ProductList = ({history, onFetchProducts, loading, products, onSetDetailedProduct, detailedProduct, redirectPath, onSetRedirectPath}) => {
     useEffect(() => {
-        onFetchProducts()
-    },[onFetchProducts]);
+        onFetchProducts();
+
+        if(redirectPath !== '/') {
+            onSetRedirectPath();
+        }
+    },[onFetchProducts, onSetRedirectPath, redirectPath]);
 
     const productClickHandler = id => {
         onSetDetailedProduct(id);
@@ -54,7 +58,8 @@ const mapStateToProps = state => {
     return {
         products: state.products.products,
         loading: state.products.loading,
-        detailedProduct: state.products.detailedProduct
+        detailedProduct: state.products.detailedProduct,
+        redirectPath: state.auth.redirectPath
     }
 }
 
@@ -62,6 +67,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchProducts: () => dispatch(actions.fetchProducts()),
         onSetDetailedProduct: product => dispatch(actions.setDetailedProduct(product)),
+        onSetRedirectPath: () => dispatch(actions.setRedirectPath('/')),
     }
 }
 

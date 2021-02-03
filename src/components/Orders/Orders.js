@@ -5,20 +5,29 @@ import OrderDetails from './OrderDetails/OrderDetails';
 import styles from './Orders.module.css';
 import * as actions from '../../store/actions/index';
 
-const Orders = ({onFetchOrders, orders, loading}) => {
+const Orders = ({onFetchOrders, orders, loading, token, userId}) => {
+    console.log(orders);
     useEffect(() => {
-        onFetchOrders()
-    }, [onFetchOrders]);
+        console.log('id', userId);
+        onFetchOrders(token, userId)
+    }, [onFetchOrders, token, userId]);
 
-    const allOrders = orders.map(order => {
-        return(
-            <OrderDetails
-                address={order.address}
-                total={order.total}
-                products={order.products}
-            />
-        )
-    })
+    let allOrders;
+
+    if(orders.length) {
+        allOrders = orders.map(order => {
+            return(
+                <OrderDetails
+                    address={order.address}
+                    total={order.total}
+                    products={order.products}
+                    key={order.id}
+                />
+            )
+        })
+    } else {
+        allOrders = <p className={styles.noOrders}>You have no orders yet...</p>
+    }
 
     return(
         <div className={styles.orders}>
@@ -29,20 +38,21 @@ const Orders = ({onFetchOrders, orders, loading}) => {
             :
             <div>{allOrders}</div>}
         </div>
-
     )
 };
 
 const mapStateToProps = state => {
     return {
         orders: state.orders.orders,
-        loading: state.orders.fetchOrdersLoading
+        loading: state.orders.fetchOrdersLoading,
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchOrders: () => dispatch(actions.fetchOrders()),
+        onFetchOrders: (token, userId) => dispatch(actions.fetchOrders(token, userId))
     }
 }
 

@@ -5,14 +5,20 @@ import CartItem from './CartItem/CartItem';
 import Button from '../UI/Button/Button';
 import DeliveryForm from '../DeliveryForm/DeliveryForm';
 import styles from './Cart.module.css';
+import * as actions from '../../store/actions/index';
 
-const Cart = ({cartItems, total, history, match}) => {
+const Cart = ({cartItems, total, history, match, isAuth, onSetRedirectPath}) => {
     const cancelButtonClickHandler = () => {
         history.goBack();
     }
 
     const continueButtonClickHandler = () => {
-        history.push('/cart/delivery-data');
+        if(isAuth) {
+            history.push('/cart/delivery-data');
+        } else {
+            onSetRedirectPath();
+            history.push('/auth');
+        }
     }
 
     const items = cartItems.map((item, i) => {
@@ -27,6 +33,8 @@ const Cart = ({cartItems, total, history, match}) => {
         )
     })
 
+    const buttonText = isAuth? 'CONTINUE' : 'LOGIN TO CONTINUE'
+
     return(
         cartItems.length 
         ?   
@@ -39,7 +47,7 @@ const Cart = ({cartItems, total, history, match}) => {
                 </ul>
                 <div>
                     <Button color='red' clicked={cancelButtonClickHandler} disabled={false}>CANCEL</Button> 
-                    <Button color='green' clicked={continueButtonClickHandler} disabled={false}>CONTINUE</Button>
+                    <Button color='green' clicked={continueButtonClickHandler} disabled={false}>{buttonText}</Button>
                 </div>
             </div>
             <Route 
@@ -56,7 +64,14 @@ const mapStateToProps = state => {
     return {
         cartItems: state.cart.cartItems,
         total: state.cart.total,
+        isAuth: state.auth.token !==null
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => {
+    return {
+        onSetRedirectPath: () => dispatch(actions.setRedirectPath('/cart')),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

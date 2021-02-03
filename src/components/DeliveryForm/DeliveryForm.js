@@ -8,7 +8,7 @@ import styles from './DeliveryForm.module.css';
 import * as actions from '../../store/actions/index';
 import {checkValidity} from '../../shared/utility';
 
-const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearCart}) => {
+const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearCart, token, userId}) => {
     const [addressForm, setAddressForm] = useState({
         name: {
             elementConfig: {
@@ -95,10 +95,11 @@ const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearC
         const orderData = {
             products: cartItems,
             total: total,
-            address: formData
+            address: formData,
+            userId: userId
         }
 
-        onMakeOrder(orderData)
+        onMakeOrder(orderData, token)
         .then(() => {
             onClearCart();
             history.push('/');
@@ -165,13 +166,15 @@ const mapStateToProps = state => {
     return {
         cartItems: state.cart.cartItems,
         total: state.cart.total,
-        loading: state.orders.makeOrderLoading
+        loading: state.orders.makeOrderLoading,
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onMakeOrder: orderData => dispatch(actions.makeOrder(orderData)),
+        onMakeOrder: (orderData, token) => dispatch(actions.makeOrder(orderData, token)),
         onClearCart: () => dispatch(actions.clearCart())
     }
 }

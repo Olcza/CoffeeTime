@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './OrderDetails.module.css';
 
 const OrderDetails = ({address, total, products}) => {
-    const allProducts = products.map(product => {
+    const allProducts = products.map((product, i) => {
         return(
-            <li>
+            <li key={product.id + i}>
                 <span>{product.name} </span>
                 <span>({product.amount}g)</span>
                 <span className={styles.price}>{product.price}zł</span>

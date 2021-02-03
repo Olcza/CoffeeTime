@@ -17,5 +17,24 @@ export const checkValidity = (value, rules) => {
         isValid = value.match(/^[\d -]+$/gm) && isValid;
     }
 
+    if(rules.isEmail) {
+        isValid = value.match(/\S+@\S+\.\S+/gm) && isValid;
+    }
+
     return isValid;
+}
+
+export const generateErrorInfo = errorCode => {
+    switch(errorCode){
+        case 'INVALID_EMAIL':
+            return 'Invalid email'
+        case 'INVALID_PASSWORD':
+            return 'Invalid password'
+        case 'WEAK_PASSWORD : Password should be at least 6 characters':
+            return 'Password is to weak. Password should be at least 6 characters'
+        case 'EMAIL_EXISTS':
+            return 'Email already exists.'
+        default: 
+            return errorCode
+    }
 }

@@ -20,15 +20,16 @@ export const makeOrderFail = () => {
     }
 }
 
-export const makeOrder = (orderData) => {
+export const makeOrder = (orderData, token) => {
+    console.log('token', token)
     return dispatch => {
         return new Promise((resolve) => {
             dispatch(makeOrderStart());
-            axios.post('/orders.json', orderData)
-            .then(() => {
+            axios.post('/orders.json?auth=' + token, orderData)
+            .then(resp => {
                 dispatch(makeOrderSuccess());
                 resolve();
-            }).catch(() => {
+            }).catch((e) => {
                 dispatch(makeOrderFail());
             });
         });
@@ -54,14 +55,18 @@ export const fetchOrdersFail = () => {
     }
 }
 
-export const fetchOrders = () => {
+export const fetchOrders = (token, userId) => {
+    console.log('id2', userId);
     return dispatch => {
         dispatch(fetchOrdersStart());
-        axios.get('/orders.json')
+
+        const params = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        
+        axios.get('/orders.json' + params)
         .then(resp => {
             const fetchedOrders = [];
             for(let key in resp.data){
-                fetchedOrders.push({...resp.data[key]});
+                fetchedOrders.push({...resp.data[key], id: key});
             }
             dispatch(fetchOrdersSuccess(fetchedOrders));
         }).catch(() => {
