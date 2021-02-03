@@ -9,10 +9,11 @@ import Cart from './components/Cart/Cart';
 import Logout from './components/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 
-const App = ({onTryAutoLogin, isAuth}) => {
+const App = ({onTryAutoLogin, isAuth, onTrySetCartItems}) => {
   useEffect(() => {
-    onTryAutoLogin()
-  });
+    onTryAutoLogin();
+    onTrySetCartItems();
+  }, [onTryAutoLogin, onTrySetCartItems]);
 
   let routes = (
     <Switch>
@@ -52,8 +53,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const total = localStorage.getItem('total');
   return {
-    onTryAutoLogin: () => dispatch(actions.authCheckState())
+    onTryAutoLogin: () => dispatch(actions.authCheckState()),
+    onTrySetCartItems: () => dispatch(actions.addListOfCartItems(cartItems, total))
   }
 }
 

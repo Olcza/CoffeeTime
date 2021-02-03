@@ -2,7 +2,8 @@ export {
     add,
     remove,
     toggleMiniCart,
-    clearCart
+    clearCart,
+    addListOfCartItems
 } from './cart';
 export {
     fetchProducts,

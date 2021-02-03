@@ -29,6 +29,8 @@ export const makeOrder = (orderData, token) => {
             .then(resp => {
                 dispatch(makeOrderSuccess());
                 resolve();
+                localStorage.removeItem('cartItems');
+                localStorage.removeItem('total');
             }).catch((e) => {
                 dispatch(makeOrderFail());
             });

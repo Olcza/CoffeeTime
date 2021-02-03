@@ -31,6 +31,12 @@ const reducer = (state=initialState, action) => {
                 cartItems: [],
                 total: 0
             } 
+        case actionTypes.ADD_LIST_OF_CART_ITEMS:
+        return{
+            ...state,
+            cartItems: action.cartItems,
+            total: Number(action.total).toFixed(2)
+        } 
         default: 
             return state
     }
