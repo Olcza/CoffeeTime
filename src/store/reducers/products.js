@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     products: [],
     detailedProduct: null,
-    loading: false
+    loading: false,
+    error: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -17,12 +18,14 @@ const reducer = (state=initialState, action) => {
             return{
                 ...state,
                 products: action.fetchedProducts,
-                loading: false
+                loading: false,
+                error: false
             }
         case actionTypes.FETCH_PRODUCTS_FAIL:
             return{
                 ...state,
-                loading: false
+                loading: false,
+                error: true
             }
         case actionTypes.SET_DETAILED_PRODUCT:
             const detailed = action.product ? state.products.find(p => p.id === action.product) : null

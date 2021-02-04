@@ -1,0 +1,11 @@
+.error {
+    padding: 10vh 0 5vh 0;
+    width: 100%;
+    text-align: center;
+}
+
+.error button {
+    display: block;
+    width: 100%;
+    margin-top: 10vh;
+}

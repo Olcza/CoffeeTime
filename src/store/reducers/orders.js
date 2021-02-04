@@ -3,7 +3,9 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     makeOrderLoading: false,
     orders: [],
-    fetchOrdersLoading: false
+    fetchOrdersLoading: false,
+    fetchingOrdersError: false,
+    placingOrderError: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -21,7 +23,8 @@ const reducer = (state=initialState, action) => {
         case actionTypes.MAKE_ORDER_FAIL:
             return{
                 ...state,
-                makeOrderLoading: false
+                makeOrderLoading: false,
+                placingOrderError: true
             }
         case actionTypes.FETCH_ORDERS_START:
             return{
@@ -37,7 +40,14 @@ const reducer = (state=initialState, action) => {
         case actionTypes.FETCH_ORDERS_FAIL:
             return{
                 ...state,
-                fetchOrdersLoading: false
+                fetchOrdersLoading: false,
+                fetchingOrdersError: true
+            }
+        case actionTypes.REMOVE_ERRORS:
+            return{
+                ...state,
+                fetchingOrdersError: false,
+                placingOrderError: false
             }
         default: 
             return state

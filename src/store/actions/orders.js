@@ -26,12 +26,12 @@ export const makeOrder = (orderData, token) => {
         return new Promise((resolve) => {
             dispatch(makeOrderStart());
             axios.post('/orders.json?auth=' + token, orderData)
-            .then(resp => {
+            .then(() => {
                 dispatch(makeOrderSuccess());
                 resolve();
                 localStorage.removeItem('cartItems');
                 localStorage.removeItem('total');
-            }).catch((e) => {
+            }).catch(() => {
                 dispatch(makeOrderFail());
             });
         });
@@ -74,5 +74,11 @@ export const fetchOrders = (token, userId) => {
         }).catch(() => {
             dispatch(fetchOrdersFail());
         });
+    }
+}
+
+export const removeErrors = () => {
+    return {
+        type: actionTypes.REMOVE_ERRORS
     }
 }

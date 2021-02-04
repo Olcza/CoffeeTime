@@ -11,7 +11,8 @@ export {
 } from './products';
 export {
     makeOrder,
-    fetchOrders
+    fetchOrders,
+    removeErrors
 } from './orders';
 export {
     auth,

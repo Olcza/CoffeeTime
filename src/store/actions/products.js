@@ -26,8 +26,7 @@ export const fetchProducts = () => {
         axios.get('/products.json')
         .then(resp => {
             dispatch(fetchProductsSuccess(resp.data));
-        }).catch(e => {
-            console.log(e);
+        }).catch(() => {
             dispatch(fetchProductsFail());
         });
     }

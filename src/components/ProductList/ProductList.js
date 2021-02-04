@@ -8,7 +8,9 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import styles from './ProductList.module.css';
 import * as actions from '../../store/actions/index';
 
-const ProductList = ({history, onFetchProducts, loading, products, onSetDetailedProduct, detailedProduct, redirectPath, onSetRedirectPath}) => {
+const ProductList = ({history, onFetchProducts, loading, products, onSetDetailedProduct, 
+    detailedProduct, redirectPath, onSetRedirectPath, error}) => {
+
     useEffect(() => {
         onFetchProducts();
 
@@ -39,14 +41,24 @@ const ProductList = ({history, onFetchProducts, loading, products, onSetDetailed
 
     const detailed = detailedProduct? <ProductDetails/> : null;
 
-    return (
-        loading ?
-        <Spinner/> :
+    let productList = (
         <Fragment>
             {detailed}
             <div className={styles.container}>
                 <div className={styles.productList}>{allProducts}</div>
             </div>
+        </Fragment>
+    );
+
+    if(error) {
+        productList = <p className={styles.error}>Could not load products. Try again later.</p>
+    }
+
+    return (
+        loading ?
+        <Spinner/> :
+        <Fragment>
+            {productList}
             <div className={styles.button}>
                 <Button color='brown' clicked={goToCartHandler} disabled={false}>GO TO CART</Button>
             </div>
@@ -59,7 +71,8 @@ const mapStateToProps = state => {
         products: state.products.products,
         loading: state.products.loading,
         detailedProduct: state.products.detailedProduct,
-        redirectPath: state.auth.redirectPath
+        redirectPath: state.auth.redirectPath,
+        error: state.products.error
     }
 }
 

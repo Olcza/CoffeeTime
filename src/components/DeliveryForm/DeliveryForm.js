@@ -4,11 +4,12 @@ import Modal from '../UI/Modal/Modal';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import Spinner from '../UI/Spinner/Spinner';
+import Error from '../Error/Error';
 import styles from './DeliveryForm.module.css';
 import * as actions from '../../store/actions/index';
 import {checkValidity} from '../../shared/utility';
 
-const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearCart, token, userId}) => {
+const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearCart, token, userId, error}) => {
     const [addressForm, setAddressForm] = useState({
         name: {
             elementConfig: {
@@ -146,6 +147,8 @@ const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearC
         )
     });
 
+    const errorModal = error ? <Error/> : null;
+
     return (
         <Modal backdropClicked={cancelHandler}>
             {loading
@@ -153,6 +156,7 @@ const DeliveryForm = ({history, cartItems, total, onMakeOrder, loading, onClearC
             <Spinner/>
             :
             <form className={styles.addressForm}>
+                {errorModal}
                 <div className={styles.info}>Provide the delivery address, please:</div>
                 {inputs}
                 <Button color='red' clicked={e => cancelHandler(e)} disabled={false}>CANCEL</Button>
@@ -168,7 +172,8 @@ const mapStateToProps = state => {
         total: state.cart.total,
         loading: state.orders.makeOrderLoading,
         token: state.auth.token,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        error: state.orders.placingOrderError
     }
 }
 
