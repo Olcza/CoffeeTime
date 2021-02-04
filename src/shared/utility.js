@@ -34,6 +34,8 @@ export const generateErrorInfo = errorCode => {
             return 'Password is to weak. Password should be at least 6 characters'
         case 'EMAIL_EXISTS':
             return 'Email already exists.'
+        case 'EMAIL_NOT_FOUND':
+            return 'Email not found.'
         default: 
             return errorCode
     }
