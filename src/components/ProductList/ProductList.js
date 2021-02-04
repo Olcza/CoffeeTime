@@ -79,7 +79,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchProducts: () => dispatch(actions.fetchProducts()),
-        onSetDetailedProduct: product => dispatch(actions.setDetailedProduct(product)),
+        onSetDetailedProduct: productId => dispatch(actions.setDetailedProduct(productId)),
         onSetRedirectPath: () => dispatch(actions.setRedirectPath('/')),
     }
 }

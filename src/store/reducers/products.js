@@ -28,7 +28,7 @@ const reducer = (state=initialState, action) => {
                 error: true
             }
         case actionTypes.SET_DETAILED_PRODUCT:
-            const detailed = action.product ? state.products.find(p => p.id === action.product) : null
+            const detailed = action.productId ? state.products.find(p => p.id === action.productId) : null
             return{
                 ...state,
                 detailedProduct: detailed

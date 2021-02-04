@@ -32,10 +32,9 @@ export const fetchProducts = () => {
     }
 }
 
-export const setDetailedProduct = (product) => {
-    console.log('action');
+export const setDetailedProduct = productId => {
     return {
         type: actionTypes.SET_DETAILED_PRODUCT,
-        product: product
+        productId: productId
     };
 };
