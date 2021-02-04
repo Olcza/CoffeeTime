@@ -25,7 +25,7 @@ export const makeOrder = (orderData, token) => {
     return dispatch => {
         return new Promise((resolve) => {
             dispatch(makeOrderStart());
-            axios.post('/orders.json?auth=' + token, orderData)
+            axios.post(`/orders.json?auth=${token}`, orderData)
             .then(() => {
                 dispatch(makeOrderSuccess());
                 resolve();
@@ -62,9 +62,9 @@ export const fetchOrders = (token, userId) => {
     return dispatch => {
         dispatch(fetchOrdersStart());
 
-        const params = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        const params = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
         
-        axios.get('/orders.json' + params)
+        axios.get(`/orders.json${params}`)
         .then(resp => {
             const fetchedOrders = [];
             for(let key in resp.data){
