@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import axios from '../../axios';
+import {clearCartItemsDataInStorage} from '../../shared/localStorageActions';
 
 export const makeOrderStart = () => {
     return {
@@ -28,9 +29,8 @@ export const makeOrder = (orderData, token) => {
             axios.post(`/orders.json?auth=${token}`, orderData)
             .then(() => {
                 dispatch(makeOrderSuccess());
+                clearCartItemsDataInStorage();
                 resolve();
-                localStorage.removeItem('cartItems');
-                localStorage.removeItem('total');
             }).catch(() => {
                 dispatch(makeOrderFail());
             });

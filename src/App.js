@@ -8,6 +8,7 @@ import Auth from './components/Auth/Auth';
 import Cart from './components/Cart/Cart';
 import Logout from './components/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
+import {getCartItemsFromStorage, getTotalFromStrorage} from './shared/localStorageActions';
 
 const App = ({onTryAutoLogin, isAuth, onTrySetCartItems}) => {
   useEffect(() => {
@@ -53,11 +54,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const total = localStorage.getItem('total');
+  console.log(getCartItemsFromStorage());
   return {
-    onTryAutoLogin: () => dispatch(actions.authCheckState()),
-    onTrySetCartItems: () => dispatch(actions.addListOfCartItems(cartItems, total))
+    onTryAutoLogin: 
+      () => dispatch(actions.authCheckState()),
+    onTrySetCartItems: 
+      () => dispatch(actions.addListOfCartItems(getCartItemsFromStorage(), getTotalFromStrorage()))
   }
 }
 
