@@ -32,7 +32,6 @@
     margin-bottom: 10px;
 }
 
-
 .pricingArea select {
     appearance: none;
     outline: 0;
@@ -74,4 +73,4 @@
         height: 320px;
         margin-right: 20px;
     }
-  }
+}

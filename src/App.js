@@ -54,7 +54,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  console.log(getCartItemsFromStorage());
   return {
     onTryAutoLogin: 
       () => dispatch(actions.authCheckState()),

@@ -11,6 +11,4 @@ const NavItem = ({children, clicked, isOpen}) => {
     )
 }
 
-
-
 export default NavItem;

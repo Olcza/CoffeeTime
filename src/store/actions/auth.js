@@ -25,8 +25,6 @@ export const authFail = error => {
 }
 
 export const auth = (email, password, isRegisterMode) => {
-    console.log(email);
-    console.log(password);
     return dispatch => {
         dispatch(authStart());
 

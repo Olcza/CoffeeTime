@@ -22,7 +22,6 @@ export const makeOrderFail = () => {
 }
 
 export const makeOrder = (orderData, token) => {
-    console.log('token', token)
     return dispatch => {
         return new Promise((resolve) => {
             dispatch(makeOrderStart());
@@ -58,7 +57,6 @@ export const fetchOrdersFail = () => {
 }
 
 export const fetchOrders = (token, userId) => {
-    console.log('id2', userId);
     return dispatch => {
         dispatch(fetchOrdersStart());
 

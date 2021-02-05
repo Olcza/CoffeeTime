@@ -7,9 +7,7 @@ import styles from './Orders.module.css';
 import * as actions from '../../store/actions/index';
 
 const Orders = ({onFetchOrders, orders, loading, token, userId, error}) => {
-    console.log(orders);
     useEffect(() => {
-        console.log('id', userId);
         onFetchOrders(token, userId)
     }, [onFetchOrders, token, userId]);
 
