@@ -9,7 +9,7 @@ import {checkValidity} from '../../shared/utility';
 import {generateErrorInfo} from '../../shared/utility';
 import * as actions from '../../store/actions/index';
 
-const Auth = ({onAuth, isAuth, redirectPath, loading, error}) => {
+const Auth = ({onAuth, isAuth, redirectPath, loading, error, onAuthAsTestUser}) => {
     const [authForm, setAuthForm] = useState({
         mail: {
             elementConfig: {
@@ -66,6 +66,10 @@ const Auth = ({onAuth, isAuth, redirectPath, loading, error}) => {
         setIsRegisterMode(false);
     }
 
+    const logInAsTestUserHandler = () => {
+        onAuthAsTestUser();
+    }
+
     const errorMessage = error ? <p>{generateErrorInfo(error.message)}</p> : null;
 
     let inputsArray = [];
@@ -104,6 +108,7 @@ const Auth = ({onAuth, isAuth, redirectPath, loading, error}) => {
             <div>Do not have an account yet?</div>
             <Button color='brown' clicked={switchToRegisterHandler} disabled={false}>REGISTER</Button>
             <div>OR</div>
+            <Button color='brown' clicked={logInAsTestUserHandler} disabled={false}>LOG IN AS TEST USER</Button>
             <div>Use test user</div>
         </div>
 
@@ -147,6 +152,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isRegisterMode) => dispatch(actions.auth(email, password, isRegisterMode)),
+        onAuthAsTestUser: () => dispatch(actions.auth('testMail@mail.com', 'testPassword', false))
     }
 }
 
