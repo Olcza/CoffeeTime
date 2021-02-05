@@ -5,7 +5,7 @@ import NavItem from './NavItem/NavItem';
 import styles from './NavItems.module.css';
 import * as actions from '../../../store/actions/index';
 
-const NavItems = ({cartItems, onToggleMiniCart, isAuth}) => {
+const NavItems = ({cartItems, onToggleMiniCart, isAuth, miniCartOpen}) => {
     const cartNavItemClickHandler = () => {
         onToggleMiniCart();
     }
@@ -29,7 +29,7 @@ const NavItems = ({cartItems, onToggleMiniCart, isAuth}) => {
 
     return(
         <ul className={styles.navItems}>
-            <NavItem clicked={cartNavItemClickHandler}>Cart({cartItems.length})</NavItem>
+            <NavItem clicked={cartNavItemClickHandler} isOpen={miniCartOpen}>Cart({cartItems.length})</NavItem>
             {myOrdersLink}
             {logInOutNavlink}
         </ul>
@@ -39,7 +39,8 @@ const NavItems = ({cartItems, onToggleMiniCart, isAuth}) => {
 const mapStateToProps = state => {
     return {
         cartItems: state.cart.cartItems,
-        isAuth: state.auth.token !==null
+        isAuth: state.auth.token !==null,
+        miniCartOpen: state.cart.miniCartOpen
     }
 }
 

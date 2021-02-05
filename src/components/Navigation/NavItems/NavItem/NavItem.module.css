@@ -6,6 +6,10 @@
     color: #000;
 }
 
+.open {
+    color: #5a5a5a;
+}
+
 @media (min-width: 600px) {
     .navItem {
         margin: 0 15px;
