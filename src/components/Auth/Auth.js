@@ -109,7 +109,6 @@ const Auth = ({onAuth, isAuth, redirectPath, loading, error, onAuthAsTestUser}) 
             <Button color='brown' clicked={switchToRegisterHandler} disabled={false}>REGISTER</Button>
             <div>OR</div>
             <Button color='brown' clicked={logInAsTestUserHandler} disabled={false}>LOG IN AS TEST USER</Button>
-            <div>Use test user</div>
         </div>
 
     const switchToLogin =  
